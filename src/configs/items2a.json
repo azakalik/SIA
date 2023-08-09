@@ -1,0 +1,25 @@
+[
+    {
+        "pokemon":"jolteon",
+        "level":100
+    },
+    {
+        "pokemon":"caterpie",
+        "level":100
+
+    },
+    {
+        "pokemon":"snorlax",
+        "level":100
+
+    },
+    {
+        "pokemon":"onix",
+        "level":100
+
+    },
+    {
+        "pokemon":"mewtwo",
+        "level":100
+    }
+]

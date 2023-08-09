@@ -77,5 +77,3 @@ def graph_ex2b():
                         mode='lines', name=line_equation)
 
     fig.show()
-
-graph_ex2b()
