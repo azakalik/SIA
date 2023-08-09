@@ -1,4 +1,32 @@
-{
+[
+    {
     "pokemon": "caterpie",
-    "pokeball": "pokeball"
-}
+    "hp": 1,
+    "level": 100,
+    "status": "NONE"
+    },
+    {
+    "pokemon": "jolteon",
+    "hp": 1,
+    "level": 100,
+    "status": "NONE"
+    },
+    {
+    "pokemon": "snorlax",
+    "hp": 1,
+    "level": 100,
+    "status": "NONE"
+    },
+    {
+        "pokemon": "onix",
+        "hp": 1,
+        "level": 100,
+        "status": "NONE"
+    },
+    {
+        "pokemon": "mewtwo",
+        "hp": 1,
+        "level": 100,
+        "status": "NONE"
+    }
+]
