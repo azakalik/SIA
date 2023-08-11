@@ -51,27 +51,50 @@ def ex2a(configFileName):
                 writer.writerow(printData)
 
 
-def graph_ex2a():
+# def graph_ex2a():
 
+#     for name in os.listdir("./Results/Ex2a/"):
+#         pokemonName = name.split("-")[0]
+#         data = []
+#         with open(f"./Results/Ex2a/{pokemonName}-data.csv", "r") as pokemonFile:
+#             reader = csv.reader(pokemonFile)
+
+#             names = next(reader)
+#             statusEffectNames = names[1::]
+#             for values in reader:
+
+#                 iterable = iter(values)
+#                 pokeball = next(iterable)
+
+#                 for index, value in enumerate(iterable):
+#                     data.append({'Effect': statusEffectNames[index], 'Pokeball': pokeball, 'Probability': float(value)})
+
+#         df = pd.DataFrame(data)
+#         fig = px.bar(df, x='Effect', y='Probability', color='Pokeball', barmode='group')
+
+#         plotly.offline.plot(fig, filename=f"./Results/Ex2a/{pokemonName}-graph.html")
+
+def graph_ex2a():
+    data_frames = []
     for name in os.listdir("./Results/Ex2a/"):
         pokemonName = name.split("-")[0]
-        data = []
         with open(f"./Results/Ex2a/{pokemonName}-data.csv", "r") as pokemonFile:
-            reader = csv.reader(pokemonFile)
+            data = pd.read_csv(pokemonFile)
+            data_frames.append(data)
 
-            names = next(reader)
-            statusEffectNames = names[1::]
-            for values in reader:
+    combined_data = pd.concat(data_frames, ignore_index=True)
 
-                iterable = iter(values)
-                pokeball = next(iterable)
+    # Melt the DataFrame to reshape it for status effect grouping
+    melted_data = combined_data.melt(id_vars=[combined_data.columns[0]], var_name='status_effect', value_name='probability')
 
-                for index, value in enumerate(iterable):
-                    data.append({'Effect': statusEffectNames[index], 'Pokeball': pokeball, 'Probability': float(value)})
+    # Rename the first column to 'pokeball'
+    melted_data = melted_data.rename(columns={melted_data.columns[0]: 'pokeball'})
 
-        df = pd.DataFrame(data)
-        fig = px.bar(df, x='Effect', y='Probability', color='Pokeball', barmode='group')
+    # Group data by 'status_effect' and 'pokeball', and calculate average probabilities
+    average_data = melted_data.groupby(['status_effect', 'pokeball'])['probability'].mean().reset_index()
 
-        plotly.offline.plot(fig, filename=f"./Results/Ex2a/{pokemonName}-graph.html")
-
-
+    # Create a bar chart for each status effect, comparing probabilities for different pokeballs
+    fig = px.bar(average_data, x='status_effect', y='probability', color='pokeball',
+                title='Average Probability of Status Effects by Pokeball')
+    fig.update_layout(xaxis_title='Status Effect', yaxis_title='Average Probability')
+    fig.show()
