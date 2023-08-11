@@ -91,10 +91,11 @@ def graph_ex2a():
     melted_data = melted_data.rename(columns={melted_data.columns[0]: 'pokeball'})
 
     # Group data by 'status_effect' and 'pokeball', and calculate average probabilities
-    average_data = melted_data.groupby(['status_effect', 'pokeball'])['probability'].mean().reset_index()
+    average_data = melted_data.groupby(['status_effect'])['probability'].mean().reset_index()
 
     # Create a bar chart for each status effect, comparing probabilities for different pokeballs
-    fig = px.bar(average_data, x='status_effect', y='probability', color='pokeball',
+    fig = px.bar(average_data, x='status_effect', y='probability', color='status_effect',
                 title='Average Probability of Status Effects by Pokeball')
     fig.update_layout(xaxis_title='Status Effect', yaxis_title='Average Probability')
+    fig.update_layout(yaxis_range=[0,1])
     fig.show()
