@@ -46,3 +46,38 @@ def graph_ex1():
     fig = px.bar(df, x='Pokeball', y='Probability', color='Pokemon', barmode='group')
     fig.show()
 
+def graph_ex1b():
+
+
+    pokemonData = {}
+    for name in os.listdir("./Results/Ex1/"):
+       pokeball = name.split("-")[0]
+       pokemonData[pokeball] = {}
+       with open(f"./Results/Ex1/{pokeball}-data.csv", "r") as pokeball_file:
+           reader = csv.reader(pokeball_file)
+           for pokemonName, probability in reader:
+               pokemonData[pokeball][pokemonName] = float(probability)
+    
+    
+   
+    normalPokeball = pokemonData.pop("pokeball")
+    for pokeballName in pokemonData.keys():
+        currentBall : dict = pokemonData[pokeballName]
+        for name in currentBall.keys():
+            currentBall[name] /= normalPokeball[name]
+    
+
+    graphData = []
+    for pokeballData in pokemonData.keys():
+        currentBallPokemonData : dict = pokemonData[pokeballData]
+        for pokemon in currentBallPokemonData.keys():
+            graphData.append({"Pokemon": pokemon, "Pokeball": pokeballData,"captureRate": currentBallPokemonData[pokemon]})
+    
+    df = pd.DataFrame(graphData)
+    fig = px.bar(df,x="Pokemon",y="captureRate", labels= { "Pokemon" : "Pokemon", "captureRate" : "Capture Rate"} ,color="Pokeball", barmode="group",title="Capture rate ratio")
+    fig.show()
+
+               
+
+
+
