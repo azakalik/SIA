@@ -30,7 +30,7 @@ def ex1(configFileName):
                         catches += 1
                 print(f"{pokemon.name},{catches / ITERATIONS}", file=f)
 
-def graph_ex1():
+def graph_ex1a():
     data = []
 
     for name in os.listdir("./Results/Ex1/"):
