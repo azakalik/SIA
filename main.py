@@ -3,11 +3,29 @@ from Exercises.ej2b import ex2, graph_ex2b
 from Exercises.ej2a import ex2a, graph_ex2a
 from Exercises.ej2d import ex2d
 import sys
+import os
+
+
+folder_path = "./Results/"
+
+# Check if the folder exists
+fp1 = folder_path + "Ex1"
+if not os.path.exists(fp1):
+    os.makedirs(fp1)
+fp2 = folder_path + "Ex2a"
+if not os.path.exists(fp2):
+    os.makedirs(fp2)
+fp3 = folder_path + "Ex2b"
+if not os.path.exists(fp3):
+    os.makedirs(fp3)
+fp4 = folder_path + "Ex2d"
+if not os.path.exists(fp4):
+    os.makedirs(fp4)
+
+
 
 
 functions = { "1a" : graph_ex1a , "1b": graph_ex1b, "2a" : graph_ex2a, "2b" : graph_ex2b }
-
-
 exerciseFunction = sys.argv[1] if len(sys.argv) > 1 else None 
 if __name__ != "__main__":
     quit()
