@@ -30,3 +30,6 @@ para instalar las dependencias necesarias en el ambiente virtual
 pipenv run python main.py [config_file]
 ```
 
+
+
+
