@@ -4,6 +4,17 @@ from Exercises.ej2a import ex2a, graph_ex2a
 from Exercises.ej2c import ex2c, graph_ex2c
 from Exercises.ej2d import ex2d
 import sys
+import os
+
+
+folder_path = "./Results/"
+
+createFolder = lambda path : os.makedirs(path) if not os.path.exists(path) else None
+createFolder(folder_path)
+
+# Check if the folder exists
+for elem in ["Ex1","Ex2a","Ex2b","Ex2c","Ex2d"]:
+    createFolder(folder_path + elem)
 
 functions = {"1a": graph_ex1a, "1b": graph_ex1b, "2a": graph_ex2a, "2b": graph_ex2b, "2c": graph_ex2c()}
 
@@ -25,3 +36,4 @@ if exerciseFunction == None:
     print("Data generated successfully!")
 else:
     functions[exerciseFunction]()
+

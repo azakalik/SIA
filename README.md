@@ -31,13 +31,17 @@ para generar un set de datos en el cual se van a basar los graficos correr
 pipenv run python main.py 
 ```
 
-para visualizar el grafico de un ejercicio elegido ejecutar
+
+Los jsons de entrada utilizados se encuentran en src/configs y los datos csv apareceran en la carpeta Results tras correr la ejecucion del programa. Tras tener estos datos, puede visualizar graficos.
+
+Para visualizar el grafico de un ejercicio elegido ejecutar
 
 ```
 pipenv run python main.py [numero ejercicio]
 ```
 donde numero de ejercicio puede ser:
-1a,1b,2a,2b
+1a,1b,2a,2b.
+
 
 
 
