@@ -13,16 +13,17 @@ def ex2a(configFileName):
     with open(configFileName, "r") as fp:
         pokemons = json.load(fp)
 
+    # the dictionary pokemonObjs will have the pokemon names as keys
+    # each key (pokemon name) will have as value an array of newly created pokemons with different status effect and 100% health
     pokemonObjs = {}
 
     pokeballs = ["pokeball", "ultraball", "fastball", "heavyball"]
 
-    factory = PokemonFactory("pokemon.json")
+    factory = PokemonFactory()
 
+    # fills pokemonObjs with intended values
     for pokemon in pokemons:
-
         pokemonObjs[pokemon["pokemon"]] = []
-
         for effect in StatusEffect:
             pokemonObjs[pokemon["pokemon"]].append(factory.create(pokemon["pokemon"], pokemon["level"], effect, 1.0))
 
@@ -30,6 +31,7 @@ def ex2a(configFileName):
         with open(f"Results/Ex2a/{pokemonName}-data.csv", "w", newline='') as f:
             writer = csv.writer(f)
 
+            # writes titles to the components of the CSV results file
             writer.writerow(["pokeball name"] + [effect.value[0] for effect in StatusEffect])
 
             for pokeball in pokeballs:
