@@ -9,21 +9,12 @@ import os
 
 folder_path = "./Results/"
 
+createFolder = lambda path : os.makedirs(path) if not os.path.exists(path) else None
+createFolder(folder_path)
+
 # Check if the folder exists
-fp1 = folder_path + "Ex1"
-if not os.path.exists(fp1):
-    os.makedirs(fp1)
-fp2 = folder_path + "Ex2a"
-if not os.path.exists(fp2):
-    os.makedirs(fp2)
-fp3 = folder_path + "Ex2b"
-if not os.path.exists(fp3):
-    os.makedirs(fp3)
-fp4 = folder_path + "Ex2d"
-if not os.path.exists(fp4):
-    os.makedirs(fp4)
-
-
+for elem in ["Ex1","Ex2a","Ex2b","Ex2c","Ex2d"]:
+    createFolder(folder_path + elem)
 
 
 functions = { "1a" : graph_ex1a , "1b": graph_ex1b, "2a" : graph_ex2a, "2b" : graph_ex2b }
@@ -42,6 +33,7 @@ if exerciseFunction == None:
     ex2("./src/configs/item2b.json")
     ex2a("./src/configs/item2a.json")
     ex2d("./src/configs/item2d.json")
+    #ex2c("./src/configs/item2c.json")
     print("Data generated successfully!")
 else:
     functions[exerciseFunction]()
@@ -65,4 +57,4 @@ else:
 # ex2("./src/configs/item2b.json")
 # graph_ex2b()
 
-ex2c("./src/configs/item2c.json")
+#ex2c("./src/configs/item2c.json")
