@@ -107,4 +107,6 @@ def graph_ex2a():
     fig = px.bar(average_data, x='status_effect', y='probability', color='status_effect',
                  title='Increase in capture rate Probability for Status Effects')
     fig.update_layout(xaxis_title='Status Effect', yaxis_title='Increase in capture rate probability compared to None')
+
+    fig.update_layout(yaxis_range=[0,1])
     fig.show()
