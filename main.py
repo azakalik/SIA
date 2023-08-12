@@ -10,7 +10,7 @@ if __name__ != "__main__":
 # Exporta resultados a Results/Ex1
 
 ex1("./src/configs/item1.json")
-#graph_ex1()
+graph_ex1()
 graph_ex1b()
 
 # Corre el Ejercicio 2

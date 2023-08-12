@@ -39,11 +39,19 @@ def graph_ex1():
         with open(f"./Results/Ex1/{pokeball}-data.csv", "r") as pokeball_file:
             reader = csv.reader(pokeball_file)
 
+            average = 0
+            AMOUNT_OF_POKEMONS = 5
+
             for pokemonName, probability in reader:
                 data.append({'Pokeball': pokeball, 'Pokemon': pokemonName, 'Probability': float(probability)})
+                average += float(probability)
+
+            average /= AMOUNT_OF_POKEMONS
+            data.append({'Pokeball': pokeball, 'Pokemon': 'Average', 'Probability': average})
 
     df = pd.DataFrame(data)
-    fig = px.bar(df, x='Pokeball', y='Probability', color='Pokemon', barmode='group')
+    fig = px.bar(df, x='Pokeball', y='Probability', color='Pokemon', barmode='group', title='Catch probability by pokeball')
+    fig.update_layout(yaxis_range=[0,1])
     fig.show()
 
 def graph_ex1b():
@@ -74,7 +82,7 @@ def graph_ex1b():
             graphData.append({"Pokemon": pokemon, "Pokeball": pokeballData,"captureRate": currentBallPokemonData[pokemon]})
     
     df = pd.DataFrame(graphData)
-    fig = px.bar(df,x="Pokemon",y="captureRate", labels= { "Pokemon" : "Pokemon", "captureRate" : "Capture Rate"} ,color="Pokeball", barmode="group",title="Capture rate ratio")
+    fig = px.bar(df,x="Pokemon",y="captureRate", labels= { "Pokemon" : "Pokemon", "captureRate" : "Capture Effectiveness"} ,color="Pokeball", barmode="group",title="Capture Effectiveness for each Pokeball as proportion of standard Pokeball")
     fig.show()
 
                
