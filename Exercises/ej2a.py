@@ -53,29 +53,6 @@ def ex2a(configFileName):
                 writer.writerow(printData)
 
 
-# def graph_ex2a():
-
-#     for name in os.listdir("./Results/Ex2a/"):
-#         pokemonName = name.split("-")[0]
-#         data = []
-#         with open(f"./Results/Ex2a/{pokemonName}-data.csv", "r") as pokemonFile:
-#             reader = csv.reader(pokemonFile)
-
-#             names = next(reader)
-#             statusEffectNames = names[1::]
-#             for values in reader:
-
-#                 iterable = iter(values)
-#                 pokeball = next(iterable)
-
-#                 for index, value in enumerate(iterable):
-#                     data.append({'Effect': statusEffectNames[index], 'Pokeball': pokeball, 'Probability': float(value)})
-
-#         df = pd.DataFrame(data)
-#         fig = px.bar(df, x='Effect', y='Probability', color='Pokeball', barmode='group')
-
-#         plotly.offline.plot(fig, filename=f"./Results/Ex2a/{pokemonName}-graph.html")
-
 def graph_ex2a():
     data_frames = []
     for name in os.listdir("./Results/Ex2a/"):

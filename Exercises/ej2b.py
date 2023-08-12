@@ -8,7 +8,7 @@ from src.catching import attempt_catch
 from src.pokemon import PokemonFactory, StatusEffect, Pokemon
 
 
-def ex2(configFileName):
+def ex2b(configFileName):
     factory = PokemonFactory("pokemon.json")
     with open(configFileName, "r") as f:
         config = json.load(f)

@@ -26,8 +26,6 @@ para instalar las dependencias necesarias en el ambiente virtual
 
 ## Ejecución
 
-
-
 para generar un set de datos en el cual se van a basar los graficos correr
 ```
 pipenv run python main.py 

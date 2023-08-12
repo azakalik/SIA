@@ -53,3 +53,30 @@ def ex2c(configFileName):
                     printData.append(percentage)
 
                 writer.writerow(printData)
+
+
+def graph_ex2c():
+    path = "./Results/Ex2c/"
+    for csv_name in os.listdir(path):
+        pokemonName = csv_name.split("-")[0]
+        csv_path = path + csv_name
+        graph_pokemon(csv_path, pokemonName)
+
+
+def graph_pokemon(pokemon_csv_path, pokemon_name):
+    # Read the CSV file into a DataFrame
+    data = pd.read_csv(pokemon_csv_path)
+
+    # Melt the DataFrame to convert it into long format
+    melted_data = pd.melt(data, id_vars=["pokeball name"], var_name="column", value_name="value")
+
+    # Create a scatter plot using Plotly Express
+    fig = px.scatter(melted_data, x="column", y="value", color="pokeball name")
+
+    # Customize the layout if needed
+    fig.update_layout(title=f"Estimated probability of catching {pokemon_name} depending on its level",
+                      xaxis_title=f"{pokemon_name} level",
+                      yaxis_title=f"Probability of catching {pokemon_name}")
+
+    # Show the plot
+    fig.show()
