@@ -85,7 +85,8 @@ def graph_ex2a():
     combined_data = pd.concat(data_frames, ignore_index=True)
 
     # Melt the DataFrame to reshape it for status effect grouping
-    melted_data = combined_data.melt(id_vars=[combined_data.columns[0]], var_name='status_effect', value_name='probability')
+    melted_data = combined_data.melt(id_vars=[combined_data.columns[0]], var_name='status_effect',
+                                     value_name='probability')
 
     # Rename the first column to 'pokeball'
     melted_data = melted_data.rename(columns={melted_data.columns[0]: 'pokeball'})
@@ -93,9 +94,17 @@ def graph_ex2a():
     # Group data by 'status_effect' and 'pokeball', and calculate average probabilities
     average_data = melted_data.groupby(['status_effect'])['probability'].mean().reset_index()
 
+    # Normalize data using None effect as a base
+    for idx, effect in enumerate(average_data['status_effect']):
+        if effect == 'none':
+            none_effect_prob = average_data['probability'][idx]
+            average_data = average_data.drop(idx)
+
+    func = lambda x: (x / none_effect_prob) - 1
+    average_data['probability'] = average_data['probability'].apply(func)
+
     # Create a bar chart for each status effect, comparing probabilities for different pokeballs
     fig = px.bar(average_data, x='status_effect', y='probability', color='status_effect',
-                title='Average Probability of Status Effects by Pokeball')
-    fig.update_layout(xaxis_title='Status Effect', yaxis_title='Average Probability')
-    fig.update_layout(yaxis_range=[0,1])
+                 title='Increase in capture rate Probability for Status Effects')
+    fig.update_layout(xaxis_title='Status Effect', yaxis_title='Increase in capture rate probability compared to None')
     fig.show()
