@@ -1,6 +1,7 @@
 from Exercises.ej1 import ex1, graph_ex1, graph_ex1b
 from Exercises.ej2b import ex2, graph_ex2b
 from Exercises.ej2a import ex2a, graph_ex2a
+from Exercises.ej2c import ex2c
 
 if __name__ != "__main__":
     quit()
@@ -16,8 +17,10 @@ if __name__ != "__main__":
 # Corre el Ejercicio 2
 # Exporta resultados a Results/Ex2
 
-ex2a("./src/configs/item2a.json")
-graph_ex2a()
+# ex2a("./src/configs/item2a.json")
+# graph_ex2a()
 
 # ex2("./src/configs/item2b.json")
 # graph_ex2b()
+
+ex2c("./src/configs/item2c.json")
